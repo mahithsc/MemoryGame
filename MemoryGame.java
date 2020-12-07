@@ -118,6 +118,10 @@
     }
     //Method for unFlipping
   	public void unFlip(){
+      for(int i = 0; i<button.length; i++){
+                button[i].setIcon(original);
+                          }
+           
       }
     public void flip(){
     }
