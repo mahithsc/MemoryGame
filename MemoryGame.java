@@ -98,7 +98,7 @@
   	public void actionPerformed(ActionEvent e){
   		int actions;
   		Object source = e.getSource();
-  		
+  		checkFlip(actions);
   		for (int i = 0; i<button.length; i++){
   			if(source == button[i]){
   				// gameImages.get(i).getDescription() - this will return a String
@@ -107,7 +107,7 @@
   				button[i].setIcon(gameImages.get(i)); // this is an imageIcon
   			}
   	    }
-  		checkFlip(actions);
+  		
   	}
     // Method for Tracing How Many Times it has flipped (Brody)
     public void checkFlip(int times){
