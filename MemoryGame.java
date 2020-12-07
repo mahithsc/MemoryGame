@@ -1,5 +1,5 @@
 /* MemoryGame.java
- * Brendan Galvin, Brody Massad, Aiden Morgan, Mahith Chitrapu
+ * Brendan Galvin
  * Mr.Blondin
  * Java II - Graphics
  * 12/1/20
@@ -96,7 +96,7 @@
   	
   	
   	public void actionPerformed(ActionEvent e){
-  		
+  		int actions;
   		Object source = e.getSource();
   		
   		for (int i = 0; i<button.length; i++){
@@ -107,10 +107,20 @@
   				button[i].setIcon(gameImages.get(i)); // this is an imageIcon
   			}
   	    }
-  		
+  		checkFlip(actions);
   	}
-  	
-  	
+    // Method for Tracing How Many Times it has flipped (Brody)
+    public void checkFlip(int times){
+      times ++;
+      if(times%2 == 0){
+        unFlip();
+      }
+    }
+    //Method for unFlipping
+  	public void unFlip(){
+      }
+    public void flip(){
+    }
   	public static void main (String [] args){
   		MemoryGame game = new MemoryGame();	
   	} // end main method
