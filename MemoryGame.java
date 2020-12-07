@@ -10,7 +10,6 @@
   import java.util.ArrayList;
   
   public class MemoryGame extends JFrame implements ActionListener{
-  
   JPanel backgroundPnl = new JPanel();
   JPanel titlePnl = new JPanel();	
   JPanel messagePnl = new JPanel();
