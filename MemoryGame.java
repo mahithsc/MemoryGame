@@ -1,9 +1,10 @@
 /* MemoryGame.java
- * Brendan Galvin, Mahith Chitrapu, Brody Massad
+ * Brendan Galvin
  * Mr.Blondin
  * Java II - Graphics
  * 12/1/20
  */
+ 
   import javax.swing.*;
   import java.awt.*;
   import java.awt.event.*;
@@ -94,78 +95,53 @@
   	System.out.println (gameImages);
   	}
   	
-  	int actions = 2;
-  	String previousActionOne = " ";
-  	String previousActionTwo = " ";
+  	int actions = 0;
+  	String previousActionOne;
+  	String previousActionTwo;
   	int indexOne = 0;
   	int indexTwo = 0;
-  	int count = 3;
-  	boolean first;
-  	public void actionPerformed(ActionEvent e){	
+  	public void actionPerformed(ActionEvent e){
   		Object source = e.getSource();
   		for (int i = 0; i<button.length; i++){
   			if(source == button[i]){
   				// gameImages.get(i).getDescription() - this will return a String
-  				System.out.println (gameImages.get(i).getDescription());
+  				// System.out.println (gameImages.get(i).getDescription());
   				actions++;
-  				System.out.println(actions);
-  				//checkFlip(actions);
-  				
-  				/*if(first){
-  					indexOne = i;
-  					first = false;
-  				}*/
-  				if(actions % 2 != 0){
-  					previousActionTwo = gameImages.get(i).getDescription();
-  					indexTwo = i;
+  				button[i].setIcon(gameImages.get(i)); // this is an imageIcon
+  				if(actions == 3){
+  					unFlip();
+  					actions = 0;
   				}
-  				else{
-  					
-  					checkFlip(actions);
+  				else if(actions % 2 == 1){
   					previousActionOne = gameImages.get(i).getDescription();
   					indexOne = i;
-  					
-  					
   				}
-  					button[i].setIcon(gameImages.get(i)); // this is an imageIcon
-  			}
-  			
-  	    }
-  	}
-  	int countEnable = 0;
+  				else if(actions % 2 == 0){
+  					previousActionTwo = gameImages.get(i).getDescription();
+  					indexTwo = i;
+  					checkFlip(actions);
+  			    }
+  	        }
+  	   }
+   }
     // Method for Tracing How Many Times it has flipped (Brody)
     public void checkFlip(int times){
-      System.out.println("I1: " + indexOne);
-      System.out.println("I2: " + indexTwo);
       if(times % 2 == 0){
-      	if(previousActionOne.equals(previousActionTwo) && button[indexOne]!=button[indexTwo]){
+      	if(previousActionOne.equals(previousActionTwo)){
       		//matchCounter++;
       		// Remove JButton at certain indexes which are a match and display the greyed out image and remove the buttons functionality
       		button[indexOne].setEnabled(false);
-            button[indexTwo].setEnabled(false);
-            countEnable++;
-            
+            button[indexTwo].setEnabled(false); 
+            actions = 0;  
       	}
-      	else{
-      		unFlip();
-      	}
-      }
-
-      			
-      
     }
+	}
     //Method for unFlipping
   	public void unFlip(){
             button[indexOne].setIcon(original);
-            button[indexTwo].setIcon(original);   
+            button[indexTwo].setIcon(original);
       }
-    public void checkCards(){
-    	
-    	
-    }
   	public static void main (String [] args){
   		MemoryGame game = new MemoryGame();	
   	} // end main method
   } // end class MemoryGame
-  		
-  		
