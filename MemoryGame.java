@@ -10,6 +10,7 @@
   import java.util.ArrayList;
   
   public class MemoryGame extends JFrame implements ActionListener{
+  
   JPanel backgroundPnl = new JPanel();
   JPanel titlePnl = new JPanel();	
   JPanel messagePnl = new JPanel();
@@ -93,36 +94,52 @@
   	System.out.println (gameImages);
   	}
   	
-  	
-  	public void actionPerformed(ActionEvent e){
-  		int actions;
+  	int actions = -1;
+  	String previousActionOne;
+  	String previousActionTwo;
+  	int indexOne;
+  	int indexTwo;
+  	public void actionPerformed(ActionEvent e){	
   		Object source = e.getSource();
-  		checkFlip(actions);
   		for (int i = 0; i<button.length; i++){
   			if(source == button[i]){
   				// gameImages.get(i).getDescription() - this will return a String
   				System.out.println (gameImages.get(i).getDescription());
-  				
+  				actions++;
+  				//checkFlip(actions);
   				button[i].setIcon(gameImages.get(i)); // this is an imageIcon
+  				if(actions % 2 != 0){
+  					previousActionOne = gameImages.get(i).getDescription();
+  					indexOne = i;
+  				}
+  				else
+  					previousActionTwo = gameImages.get(i).getDescription();
+  					indexTwo = i;
+  					checkFlip(actions);
   			}
   	    }
-  		
   	}
     // Method for Tracing How Many Times it has flipped (Brody)
     public void checkFlip(int times){
-      times ++;
-      if(times%2 == 0){
-        unFlip();
+      if(times % 2 == 0){
+      	if(previousActionOne.equals(previousActionTwo)){
+      		//matchCounter++;
+      		// Remove JButton at certain indexes which are a match and display the greyed out image and remove the buttons functionality
+      		button[indexOne].setEnabled(false);
+            button[indexTwo].setEnabled(false);   
+      	}
+      	else
+      		unFlip();	
       }
     }
     //Method for unFlipping
   	public void unFlip(){
-      for(int i = 0; i<button.length; i++){
-                button[i].setIcon(original);
-                          }
-           
+            button[indexOne].setIcon(original);
+            button[indexTwo].setIcon(original);   
       }
-    public void flip(){
+    public void checkCards(){
+    	
+    	
     }
   	public static void main (String [] args){
   		MemoryGame game = new MemoryGame();	
@@ -130,4 +147,3 @@
   } // end class MemoryGame
   		
   		
-  
