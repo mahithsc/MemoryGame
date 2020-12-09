@@ -10,7 +10,7 @@
 
 Problems That We Had and How We Solved Them
 1. Issue: You can click the same button twice, and the cimputer thinks that there is a math 
-  - We thoght about using recursion by creating an if statement when the user ckicks the same card twice, we call the methid for the user to pick          a card(we didnt go with this solution)
+  - We thoght about using recursion by creating an if statement when the user clicks the same card twice, we call the method for the user to pick          a card(we didnt go with this solution)
   - Solution: 
   
 2. figuring out the logic issue with flipping the cards: once you clicked the card the 
