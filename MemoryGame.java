@@ -1,5 +1,5 @@
 /* MemoryGame.java
- * Brendan Galvin
+ * Brendan Galvin, Mahith Chitrapu, Brody Massad
  * Mr.Blondin
  * Java II - Graphics
  * 12/1/20
@@ -94,11 +94,13 @@
   	System.out.println (gameImages);
   	}
   	
-  	int actions = -1;
-  	String previousActionOne;
-  	String previousActionTwo;
-  	int indexOne;
-  	int indexTwo;
+  	int actions = 2;
+  	String previousActionOne = " ";
+  	String previousActionTwo = " ";
+  	int indexOne = 0;
+  	int indexTwo = 0;
+  	int count = 3;
+  	boolean first;
   	public void actionPerformed(ActionEvent e){	
   		Object source = e.getSource();
   		for (int i = 0; i<button.length; i++){
@@ -106,31 +108,51 @@
   				// gameImages.get(i).getDescription() - this will return a String
   				System.out.println (gameImages.get(i).getDescription());
   				actions++;
+  				System.out.println(actions);
   				//checkFlip(actions);
-  				button[i].setIcon(gameImages.get(i)); // this is an imageIcon
-  				if(actions % 2 != 0){
-  					previousActionOne = gameImages.get(i).getDescription();
+  				
+  				/*if(first){
   					indexOne = i;
-  				}
-  				else
+  					first = false;
+  				}*/
+  				if(actions % 2 != 0){
   					previousActionTwo = gameImages.get(i).getDescription();
   					indexTwo = i;
+  				}
+  				else{
+  					
   					checkFlip(actions);
+  					previousActionOne = gameImages.get(i).getDescription();
+  					indexOne = i;
+  					
+  					
+  				}
+  					button[i].setIcon(gameImages.get(i)); // this is an imageIcon
   			}
+  			
   	    }
   	}
+  	int countEnable = 0;
     // Method for Tracing How Many Times it has flipped (Brody)
     public void checkFlip(int times){
+      System.out.println("I1: " + indexOne);
+      System.out.println("I2: " + indexTwo);
       if(times % 2 == 0){
-      	if(previousActionOne.equals(previousActionTwo)){
+      	if(previousActionOne.equals(previousActionTwo) && button[indexOne]!=button[indexTwo]){
       		//matchCounter++;
       		// Remove JButton at certain indexes which are a match and display the greyed out image and remove the buttons functionality
       		button[indexOne].setEnabled(false);
-            button[indexTwo].setEnabled(false);   
+            button[indexTwo].setEnabled(false);
+            countEnable++;
+            
       	}
-      	else
-      		unFlip();	
+      	else{
+      		unFlip();
+      	}
       }
+
+      			
+      
     }
     //Method for unFlipping
   	public void unFlip(){
